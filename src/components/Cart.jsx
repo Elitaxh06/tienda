@@ -14,7 +14,7 @@ const Cart = () => {
         }else{
             message = `¡Hola! Estoy interesado en los siguientes productos:\n\n${cartMessage}\n\nPor un Total de: $${total}\n\nGracias!`;
         }
-        const url = `https://wa.me/50684251605?text=${encodeURIComponent(message)}`        
+        const url = `https://wa.me/50683745485?text=${encodeURIComponent(message)}`        
         window.open(url, '_blank')
     
     }

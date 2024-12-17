@@ -10,7 +10,7 @@ function App() {
   
   return (
     <>
-      <h1 className="font-bold text-3xl text-center mr-20">Call To Api</h1>
+      <h1 className="font-bold text-3xl text-center mr-20">⚠️ Sitio en Desarrollo - Tienda React</h1>
     <CartProvider>
       <Cart />
       <Card />

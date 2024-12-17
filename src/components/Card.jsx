@@ -26,7 +26,7 @@ function Card() {
         }
       };
       consumirApi();
-    }, 1000);
+    }, 0);
     return () => clearTimeout(timeout);
   }, []);
 
@@ -62,9 +62,9 @@ function Card() {
               <p className="text-gray-600 mb-4">{item.category.name} <br /> ${item.price}</p>
               <button 
                 onClick={() => addToCart(item)} 
-                className="rounded-lg hover:scale-110 hover:bg-slate-100 transition-transform duration-300 text-white"
+                className="rounded-lg ml-4 mb-2 hover:scale-110 bg-slate-300 hover:bg-blue-200 transition-transform duration-300 "
                 >
-                🛒
+                Add 🛒
               </button>
             
             </div>
