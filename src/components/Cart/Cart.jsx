@@ -3,6 +3,8 @@ import { useCart } from '../../Context/CarContext';
 import './Cart.css';
 
 const Cart = () => {
+
+  
   const { cart, removeFromCart } = useCart(); // Acceder al carrito desde el contexto
     const handleWhatsApp = () => {
         const total = cart.reduce((total,item) => total + item.price, 0)
@@ -19,6 +21,23 @@ const Cart = () => {
         window.open(url, '_blank')
     
     }
+    const uniqueCart = cart.filter(
+      (item, index, self) => self.findIndex(i => i.id === item.id) === index
+    );
+    
+    const aggregatedCart = cart.reduce((acc, item)=>{
+      
+      const foundItem = acc.find((i) => i.id === item.id);
+      if(foundItem){
+        foundItem.length += 1;
+       
+
+      }else{
+        acc.push({...item,length: 1})
+        
+      }
+      return acc;
+    }, [])
 
 
   return (
@@ -35,7 +54,7 @@ const Cart = () => {
           
       ):(
         <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 p-10'>
-          {cart.map((item) => (
+          {aggregatedCart.map((item) => (
             <div key={item.id} className="bg-white rounded-lg shadow-md overflow-hidden mt-2">
               <div className='flex flex-col justify-between items-center p-4'>
                 <img className='w-full mb-4 image'
@@ -44,7 +63,8 @@ const Cart = () => {
                 <span className='ml-2 font-bold text-ellipsis overflow-hidden whitespace-wrap'>{item.title}</span>
               <span className='text-lg font-bold text-center mb-4'>${item.price}</span>
               {/* <span className='ml-2 text-ellipsis overflow-hidden whitespace-nowrap'>{item.title}</span> */}
-
+              {item.length == 1 ? <span>{item.length} Unidad</span> : <span>{item.length} Unidades</span>}
+              
               </div>
               <button
                 onClick={() => removeFromCart(item.id)}

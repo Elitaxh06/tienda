@@ -2,11 +2,15 @@
   margin: 0 auto;
   padding: 2rem;
   height: 100vh; 
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
 }
 
 .navi{
   color: #838383;
+}
+
+.titulo{
+  margin-top: 3em;
 }
 
 

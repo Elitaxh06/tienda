@@ -40,7 +40,7 @@ function Card() {
 
   
   return (
-    <div>
+    <div id='card'>
       <input 
       type="text" 
       placeholder="Buscar..." 
