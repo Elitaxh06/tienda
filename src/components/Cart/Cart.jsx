@@ -1,5 +1,6 @@
 import React from 'react';
-import { useCart } from '../Context/CarContext';
+import { useCart } from '../../Context/CarContext';
+import './Cart.css';
 
 const Cart = () => {
   const { cart, removeFromCart } = useCart(); // Acceder al carrito desde el contexto
@@ -31,28 +32,41 @@ const Cart = () => {
         
       {cart.length === 0 ? (
         <p className='text-center font-bold'>Tu carrito está vacío</p>
+          
       ):(
-        <ul className='mt-6'>
+        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 p-10'>
           {cart.map((item) => (
-            <li key={item.id} className="flex justify-between items-center mt-4">
-              <span>{item.title}</span>
-              <span>${item.price}</span>
+            <div key={item.id} className="bg-white rounded-lg shadow-md overflow-hidden mt-2">
+              <div className='flex flex-col justify-between items-center p-4'>
+                <img className='w-full mb-4 image'
+                src={item.category.image}
+                alt="" />
+                <span className='ml-2 font-bold text-ellipsis overflow-hidden whitespace-wrap'>{item.title}</span>
+              <span className='text-lg font-bold text-center mb-4'>${item.price}</span>
+              {/* <span className='ml-2 text-ellipsis overflow-hidden whitespace-nowrap'>{item.title}</span> */}
+
+              </div>
               <button
                 onClick={() => removeFromCart(item.id)}
-                className="text-red-500 hover:text-red-700"
+                className="w-full bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg"
               >
                 Eliminar
               </button>
-            </li>
+              
+            </div>
+            
           ))}
             <div className='flex justify-center items-center mt-6'>
                 <button onClick={handleWhatsApp} className='mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg'>
                   Contactar con el vendedor
                 </button>
             </div>
-        </ul>
+        </div>
         
       )}
+
+           
+      
       
     </div>
   );

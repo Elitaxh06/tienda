@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useCart } from '../Context/CarContext';
+import { useCart } from '../../Context/CarContext';
 import './Card.css';
 
 function Card() {
     
-    const { addToCart } = useCart(); // Obtener la función addToCart del contexto
+    const { cart, addToCart, removeFromCart } = useCart(); // Obtener la función addToCart del contexto
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [search, setSearch] = useState('');
@@ -48,7 +48,7 @@ function Card() {
       onChange={(e) => setSearch(e.target.value)} 
       className="w-full mt-4 p-2 rounded-lg border-2 border-gray-300"
       />
-      
+        <p className='font-bold text-xl'>Productos en el carrito: {cart.length}</p>
         <div className="carta grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 p-10">
         {(search.length === 0 ? data : filteredData).map((item) => (
 
@@ -65,6 +65,9 @@ function Card() {
                 className="rounded-lg ml-4 mb-2 hover:scale-110 bg-slate-300 hover:bg-blue-200 transition-transform duration-300 "
                 >
                 Add 🛒
+              </button>
+              <button onClick={() => removeFromCart(item.id)} className="rounded-lg ml-4 mb-2 hover:scale-110 bg-red-300 hover:bg-red-200 transition-transform duration-300 ">
+                Eliminar
               </button>
             
             </div>

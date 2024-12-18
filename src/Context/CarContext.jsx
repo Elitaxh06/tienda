@@ -1,9 +1,8 @@
 import React, { createContext, useContext, useState } from 'react';
 
-// Crear el Contexto del Carrito
 const CartContext = createContext();
 
-// Proveedor de contexto para envolver nuestra aplicación
+
 export const CartProvider = ({ children }) => {
     const myLocalStorage = localStorage.getItem('cart')
     let parset;
