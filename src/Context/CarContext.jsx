@@ -4,19 +4,18 @@ const CartContext = createContext();
 
 
 export const CartProvider = ({ children }) => {
-    const myLocalStorage = localStorage.getItem('cart')
-    let parset;
-    if(!myLocalStorage){
-        localStorage.setItem('cart', JSON.stringify([]))
-        parset = []
-    }else{
-        parset = JSON.parse(myLocalStorage)
-    }
-    
+    // const myLocalStorage = localStorage.getItem('cart')
+    // let parset;
+    // if(!myLocalStorage){
+    //     localStorage.setItem('cart', JSON.stringify([]))
+    //     parset = []
+    // }else{
+    //     parset = JSON.parse(myLocalStorage)
+    // }
+    // const saveCart = () => {
+    //   localStorage.setItem('cart', JSON.stringify(parset))
+    // }
   const [cart, setCart] = useState([]);
-    const saveCart = () => {
-        localStorage.setItem('cart', JSON.stringify(parset))
-    }
   const addToCart = (product) => {
     setCart((prevCart) => [...prevCart, product]);
   };

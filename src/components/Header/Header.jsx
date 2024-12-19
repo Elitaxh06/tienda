@@ -5,7 +5,7 @@ import { useCart } from '../../Context/CarContext';
 const Header = () => {
   const { cart } = useCart();
   return (
-    <header className="py-4 px-6 rounded-lg fixed top-0 left-1/2 transform -translate-x-1/2 mt-4 ml-4 bg-gray-200 shadow-lg z-10">
+    <header className="py-4 px-6 rounded-lg fixed top-0 left-1/2 transform -translate-x-1/2 mt-3 bg-gray-200 shadow-lg z-10">
       <ul className='flex justify-between items-center'>
         <li className='font-bold text-xl ml-2 mr-2'>
             <NavLink to="/" end>Inicio</NavLink>

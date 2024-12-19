@@ -1,5 +1,6 @@
 import React from 'react';
 import { useCart } from '../../Context/CarContext';
+import { NavLink } from 'react-router';
 import './Cart.css';
 
 const Cart = () => {
@@ -21,9 +22,7 @@ const Cart = () => {
         window.open(url, '_blank')
     
     }
-    const uniqueCart = cart.filter(
-      (item, index, self) => self.findIndex(i => i.id === item.id) === index
-    );
+    
     
     const aggregatedCart = cart.reduce((acc, item)=>{
       
@@ -31,7 +30,6 @@ const Cart = () => {
       if(foundItem){
         foundItem.length += 1;
        
-
       }else{
         acc.push({...item,length: 1})
         
@@ -42,15 +40,19 @@ const Cart = () => {
 
   return (
     <div className="cart bg-gray-100 p-4 rounded-lg mt-4 grid-cols-2 gap-4">
-        <div className='w-full flex justify-between'>
+          <h2 className="text-3xl text-center font-bold">Carrito de Compras</h2>
+         <div id='cart-header' className='w-full flex justify-between'>
             <p className='font-bold text-xl'>Total: ${cart.reduce((total, item) => total + item.price, 0)}</p>
-            <h2 className="text-3xl font-bold">Carrito de Compras</h2>
             <p className='font-bold text-sm'>Productos en el carrito: {cart.length}</p>
 
         </div>
         
       {cart.length === 0 ? (
-        <p className='text-center font-bold'>Tu carrito está vacío</p>
+        <div className="flex justify-center flex-col items-center">
+          <p className='text-center font-bold'>Tu carrito está vacío</p>
+          <NavLink to='/card' end className="text-center font-bold text-xl mt-4 rounded-lg border-2 bg-slate-300 border-slate-300 px-4 py-1 hover:bg-blue-300 scale-100 hover:scale-110 transition duration-300">Ver Productos</NavLink>
+        </div>
+
           
       ):(
         <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 p-10'>
