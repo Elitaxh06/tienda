@@ -22,10 +22,21 @@ export const CartProvider = ({ children }) => {
 
   const removeFromCart = (productId) => {
     setCart((prevCart) => prevCart.filter(item => item.id !== productId));
+  };  // ...existing code...
+  const removeOneFromCart = (productId) => {
+    setCart((prevCart) => {
+      const index = prevCart.findIndex(item => item.id === productId);
+      if (index !== -1) {
+        const newCart = [...prevCart];
+        newCart.splice(index, 1);
+        return newCart;
+      }
+      return prevCart;
+    });
   };
-
+  // ...existing code...
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart }}>
+    <CartContext.Provider value={{ cart, addToCart, removeFromCart, removeOneFromCart }}>
       {children}
     </CartContext.Provider>
   );

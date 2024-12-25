@@ -6,7 +6,7 @@ import './Cart.css';
 const Cart = () => {
 
   
-  const { cart, removeFromCart } = useCart(); // Acceder al carrito desde el contexto
+  const { cart,addToCart, removeFromCart, removeOneFromCart } = useCart(); // Acceder al carrito desde el contexto
     const handleWhatsApp = () => {
         const total = cart.reduce((total,item) => total + item.price, 0)
         const cartMessage = cart
@@ -65,15 +65,22 @@ const Cart = () => {
                 <span className='ml-2 font-bold text-ellipsis overflow-hidden whitespace-wrap'>{item.title}</span>
               <span className='text-lg font-bold text-center mb-4'>${item.price}</span>
               {/* <span className='ml-2 text-ellipsis overflow-hidden whitespace-nowrap'>{item.title}</span> */}
-              {item.length == 1 ? <span>{item.length} Unidad</span> : <span>{item.length} Unidades</span>}
+              {item.length == 1 ? <span className='font-bold'>{item.length} Unidad</span> : <span className='font-bold'>{item.length} Unidades</span>}
               
               </div>
-              <button
-                onClick={() => removeFromCart(item.id)}
-                className="w-full bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg"
-              >
-                Eliminar
-              </button>
+              <div className='flex justify-center items-center'>
+                  <button
+                    onClick={() => removeOneFromCart(item.id)}
+                    className="w-full bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg"
+                    >
+                    Eliminar
+                  </button>
+                  <button
+                    onClick={() => addToCart(item)}
+                    className='w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg'>
+                    Agregar
+                  </button>
+                </div>
               
             </div>
             
